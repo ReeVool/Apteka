@@ -1,0 +1,37 @@
+﻿<Page x:Class="Apteka.Pages.Prods.Ot_Clients"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Apteka.Pages.Prods"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Ot_Clients"
+      Loaded="Page_Loaded">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Label Content="Продажи клиентам" Grid.Row="0" 
+               FontSize="30"
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <!-- Таблица -->
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="счет_фактурыDataGrid" AutoGenerateColumns="False"
+                      EnableRowVirtualization="True"
+                      RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="Номер_счетфактурыColumn" Binding="{Binding Номер_счет_фактуры}" Header="Номер" IsReadOnly="True" Width="1*"/>
+                    <DataGridTextColumn x:Name="Код_клиентаColumn" Binding="{Binding Код_клиента}" Header="Код Клиента" Width="2*"/>
+                    <DataGridTextColumn x:Name="КлиентColumn" Binding="{Binding Клиент}" Header="Клиент" Width="2*"/>
+                    <DataGridTextColumn x:Name="КоличествоColumn" Binding="{Binding Количество}" Header="Количество" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

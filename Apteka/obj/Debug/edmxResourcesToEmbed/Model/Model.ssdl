@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AptekaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Клиенты">
+    <Key>
+      <PropertyRef Name="Код клиента" />
+    </Key>
+    <Property Name="Код клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код товара" Type="int" Nullable="false" />
+    <Property Name="Код производителя" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Адрес" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Банк" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Контактное лицо" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Производители">
+    <Key>
+      <PropertyRef Name="Код производителя" />
+    </Key>
+    <Property Name="Код производителя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Адрес" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код сотрудника" />
+    </Key>
+    <Property Name="Код сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Должность" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Дата регистрации" Type="date" Nullable="false" />
+    <Property Name="Имя и отчество" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Дата рождения" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Счет-фактуры">
+    <Key>
+      <PropertyRef Name="Номер счет фактуры" />
+    </Key>
+    <Property Name="Номер счет фактуры" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код клиента" Type="int" Nullable="false" />
+    <Property Name="Код сотрудника" Type="int" Nullable="false" />
+    <Property Name="Клиент" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Товар" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Количество" Type="int" Nullable="false" />
+    <Property Name="Дата" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Товары">
+    <Key>
+      <PropertyRef Name="Код товара" />
+    </Key>
+    <Property Name="Код товара" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код производителя" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Артикул" Type="int" Nullable="false" />
+    <Property Name="Тип" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Производитель" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Стоимость" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Хранилище AptekaModelContainer">
+    <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Производители" EntityType="Self.Производители" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Счет-фактуры" EntityType="Self.Счет-фактуры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Товары" EntityType="Self.Товары" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

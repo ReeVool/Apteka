@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AptekaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Клиенты">
+    <Key>
+      <PropertyRef Name="Код_клиента" />
+    </Key>
+    <Property Name="Код_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Код_товара" Type="Int32" Nullable="false" />
+    <Property Name="Код_типа_топлива" Type="Int32" Nullable="false" />
+    <Property Name="Код_производителя" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Краткое_наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Адрес_фактический" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Адрес_юридический" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Банк" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Контактное_лицо" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_регистрации" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Доп__телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Описание_доп__телефона" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Доп__адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Доп__email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Наименование_доп__контакта" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Описание_доп__контакта" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Производители" Relationship="Self.FK_Клиенты_Производители" FromRole="Клиенты" ToRole="Производители" />
+    <NavigationProperty Name="Типы_топлива" Relationship="Self.FK_Клиенты_Типы_топлива" FromRole="Клиенты" ToRole="Типы_топлива" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Клиенты_Товары" FromRole="Клиенты" ToRole="Товары" />
+    <NavigationProperty Name="Счет_фактуры" Relationship="Self.FK_Счет_фактуры_Клиенты" FromRole="Клиенты" ToRole="Счет_фактуры" />
+  </EntityType>
+  <EntityType Name="Производители">
+    <Key>
+      <PropertyRef Name="Код_производителя" />
+    </Key>
+    <Property Name="Код_производителя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Клиенты" Relationship="Self.FK_Клиенты_Производители" FromRole="Производители" ToRole="Клиенты" />
+    <NavigationProperty Name="Счет_фактуры" Relationship="Self.FK_Счет_фактуры_Производители" FromRole="Производители" ToRole="Счет_фактуры" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Товары_Производители" FromRole="Производители" ToRole="Товары" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код_сотрудника" />
+    </Key>
+    <Property Name="Код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_регистрации" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Имя_и_отчество" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Счет_фактуры" Relationship="Self.FK_Счет_фактуры_Сотрудники" FromRole="Сотрудники" ToRole="Счет_фактуры" />
+  </EntityType>
+  <EntityType Name="Счет_фактуры">
+    <Key>
+      <PropertyRef Name="Номер_счет_фактуры" />
+    </Key>
+    <Property Name="Номер_счет_фактуры" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Код_клиента" Type="Int32" Nullable="false" />
+    <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Код_товара" Type="Int32" Nullable="false" />
+    <Property Name="Код_типа_топлива" Type="Int32" Nullable="false" />
+    <Property Name="Код_производителя" Type="Int32" Nullable="false" />
+    <Property Name="Клиент" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Товар" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Количество" Type="Int32" Nullable="false" />
+    <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Клиенты" Relationship="Self.FK_Счет_фактуры_Клиенты" FromRole="Счет_фактуры" ToRole="Клиенты" />
+    <NavigationProperty Name="Производители" Relationship="Self.FK_Счет_фактуры_Производители" FromRole="Счет_фактуры" ToRole="Производители" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Счет_фактуры_Сотрудники" FromRole="Счет_фактуры" ToRole="Сотрудники" />
+    <NavigationProperty Name="Типы_топлива" Relationship="Self.FK_Счет_фактуры_Типы_топлива" FromRole="Счет_фактуры" ToRole="Типы_топлива" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Счет_фактуры_Товары" FromRole="Счет_фактуры" ToRole="Товары" />
+  </EntityType>
+  <EntityType Name="Типы_топлива">
+    <Key>
+      <PropertyRef Name="Код_типа_топлива" />
+    </Key>
+    <Property Name="Код_типа_топлива" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Клиенты" Relationship="Self.FK_Клиенты_Типы_топлива" FromRole="Типы_топлива" ToRole="Клиенты" />
+    <NavigationProperty Name="Счет_фактуры" Relationship="Self.FK_Счет_фактуры_Типы_топлива" FromRole="Типы_топлива" ToRole="Счет_фактуры" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Товары_Типы_топлива" FromRole="Типы_топлива" ToRole="Товары" />
+  </EntityType>
+  <EntityType Name="Товары">
+    <Key>
+      <PropertyRef Name="Код_товара" />
+    </Key>
+    <Property Name="Код_товара" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Код_типа_топлива" Type="Int32" Nullable="false" />
+    <Property Name="Код_производителя" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Артикул" Type="Int32" Nullable="false" />
+    <Property Name="Тип" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Производитель" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Клиенты" Relationship="Self.FK_Клиенты_Товары" FromRole="Товары" ToRole="Клиенты" />
+    <NavigationProperty Name="Производители" Relationship="Self.FK_Товары_Производители" FromRole="Товары" ToRole="Производители" />
+    <NavigationProperty Name="Счет_фактуры" Relationship="Self.FK_Счет_фактуры_Товары" FromRole="Товары" ToRole="Счет_фактуры" />
+    <NavigationProperty Name="Типы_топлива" Relationship="Self.FK_Товары_Типы_топлива" FromRole="Товары" ToRole="Типы_топлива" />
+  </EntityType>
+  <Association Name="FK_Клиенты_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код_производителя" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код_производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Клиенты_Типы_топлива">
+    <End Role="Типы_топлива" Type="Self.Типы_топлива" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы_топлива">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Клиенты_Товары">
+    <End Role="Товары" Type="Self.Товары" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Товары">
+        <PropertyRef Name="Код_товара" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код_товара" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет_фактуры_Клиенты">
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+    <End Role="Счет_фактуры" Type="Self.Счет_фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиенты">
+        <PropertyRef Name="Код_клиента" />
+      </Principal>
+      <Dependent Role="Счет_фактуры">
+        <PropertyRef Name="Код_клиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет_фактуры_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Счет_фактуры" Type="Self.Счет_фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код_производителя" />
+      </Principal>
+      <Dependent Role="Счет_фактуры">
+        <PropertyRef Name="Код_производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код_производителя" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Код_производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет_фактуры_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Счет_фактуры" Type="Self.Счет_фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Код_сотрудника" />
+      </Principal>
+      <Dependent Role="Счет_фактуры">
+        <PropertyRef Name="Код_сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет_фактуры_Типы_топлива">
+    <End Role="Типы_топлива" Type="Self.Типы_топлива" Multiplicity="1" />
+    <End Role="Счет_фактуры" Type="Self.Счет_фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы_топлива">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Principal>
+      <Dependent Role="Счет_фактуры">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет_фактуры_Товары">
+    <End Role="Товары" Type="Self.Товары" Multiplicity="1" />
+    <End Role="Счет_фактуры" Type="Self.Счет_фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Товары">
+        <PropertyRef Name="Код_товара" />
+      </Principal>
+      <Dependent Role="Счет_фактуры">
+        <PropertyRef Name="Код_товара" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_Типы_топлива">
+    <End Role="Типы_топлива" Type="Self.Типы_топлива" Multiplicity="1" />
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы_топлива">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Код_типа_топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Apteka_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+    <EntitySet Name="Производители" EntityType="Self.Производители" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="Счет_фактуры" EntityType="Self.Счет_фактуры" />
+    <EntitySet Name="Типы_топлива" EntityType="Self.Типы_топлива" />
+    <EntitySet Name="Товары" EntityType="Self.Товары" />
+    <AssociationSet Name="FK_Клиенты_Производители" Association="Self.FK_Клиенты_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Клиенты_Типы_топлива" Association="Self.FK_Клиенты_Типы_топлива">
+      <End Role="Типы_топлива" EntitySet="Типы_топлива" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Клиенты_Товары" Association="Self.FK_Клиенты_Товары">
+      <End Role="Товары" EntitySet="Товары" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет_фактуры_Клиенты" Association="Self.FK_Счет_фактуры_Клиенты">
+      <End Role="Клиенты" EntitySet="Клиенты" />
+      <End Role="Счет_фактуры" EntitySet="Счет_фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет_фактуры_Производители" Association="Self.FK_Счет_фактуры_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Счет_фактуры" EntitySet="Счет_фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_Производители" Association="Self.FK_Товары_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет_фактуры_Сотрудники" Association="Self.FK_Счет_фактуры_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Счет_фактуры" EntitySet="Счет_фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет_фактуры_Типы_топлива" Association="Self.FK_Счет_фактуры_Типы_топлива">
+      <End Role="Типы_топлива" EntitySet="Типы_топлива" />
+      <End Role="Счет_фактуры" EntitySet="Счет_фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет_фактуры_Товары" Association="Self.FK_Счет_фактуры_Товары">
+      <End Role="Товары" EntitySet="Товары" />
+      <End Role="Счет_фактуры" EntitySet="Счет_фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_Типы_топлива" Association="Self.FK_Товары_Типы_топлива">
+      <End Role="Типы_топлива" EntitySet="Типы_топлива" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

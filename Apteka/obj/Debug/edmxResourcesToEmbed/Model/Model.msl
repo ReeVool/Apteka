@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AptekaModelContainer" CdmEntityContainer="Apteka_Entities">
+    <EntitySetMapping Name="Клиенты">
+      <EntityTypeMapping TypeName="AptekaModel.Клиенты">
+        <MappingFragment StoreEntitySet="Клиенты">
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Код_клиента" ColumnName="Код клиента" />
+          <ScalarProperty Name="Код_товара" ColumnName="Код товара" />
+          <ScalarProperty Name="Код_производителя" ColumnName="Код производителя" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Банк" ColumnName="Банк" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+          <ScalarProperty Name="Контактное_лицо" ColumnName="Контактное лицо" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Производители">
+      <EntityTypeMapping TypeName="AptekaModel.Производители">
+        <MappingFragment StoreEntitySet="Производители">
+          <ScalarProperty Name="Код_производителя" ColumnName="Код производителя" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="AptekaModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код сотрудника" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+          <ScalarProperty Name="Дата_регистрации" ColumnName="Дата регистрации" />
+          <ScalarProperty Name="Имя_и_отчество" ColumnName="Имя и отчество" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Счет_фактуры">
+      <EntityTypeMapping TypeName="AptekaModel.Счет_фактуры">
+        <MappingFragment StoreEntitySet="Счет-фактуры">
+          <ScalarProperty Name="Номер_счет_фактуры" ColumnName="Номер счет фактуры" />
+          <ScalarProperty Name="Код_клиента" ColumnName="Код клиента" />
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код сотрудника" />
+          <ScalarProperty Name="Клиент" ColumnName="Клиент" />
+          <ScalarProperty Name="Товар" ColumnName="Товар" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+          <ScalarProperty Name="Дата" ColumnName="Дата" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Товары">
+      <EntityTypeMapping TypeName="AptekaModel.Товары">
+        <MappingFragment StoreEntitySet="Товары">
+          <ScalarProperty Name="Код_товара" ColumnName="Код товара" />
+          <ScalarProperty Name="Код_производителя" ColumnName="Код производителя" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+          <ScalarProperty Name="Тип" ColumnName="Тип" />
+          <ScalarProperty Name="Производитель" ColumnName="Производитель" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

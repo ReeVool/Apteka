@@ -1,0 +1,34 @@
+﻿<Page x:Class="Apteka.Group_Tov"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Apteka"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Group_Tov"
+      Loaded="Page_Loaded"
+      >
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Label Content="Группы товаров" Grid.Row="0" 
+               FontSize="30"
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
+        <!-- Таблица -->
+        <DataGrid x:Name="товарыDataGrid" AutoGenerateColumns="False" 
+                  EnableRowVirtualization="True" ItemsSource="{Binding}"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  Margin="50 0" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="типColumn" Binding="{Binding Тип}" Header="Тип" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

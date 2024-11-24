@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AptekaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Клиенты">
+    <Key>
+      <PropertyRef Name="Код клиента" />
+    </Key>
+    <Property Name="Код клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код товара" Type="int" Nullable="false" />
+    <Property Name="Код типа топлива" Type="int" Nullable="false" />
+    <Property Name="Код производителя" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Краткое наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Адрес фактический" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Адрес юридический" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Банк" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Контактное лицо" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Дата регистрации" Type="date" Nullable="false" />
+    <Property Name="Доп. телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Описание доп. телефона" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Доп. адрес" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Доп. email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Описание" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Наименование доп. контакта" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Описание доп. контакта" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Производители">
+    <Key>
+      <PropertyRef Name="Код производителя" />
+    </Key>
+    <Property Name="Код производителя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Адрес" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код сотрудника" />
+    </Key>
+    <Property Name="Код сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Должность" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Дата регистрации" Type="date" Nullable="false" />
+    <Property Name="Имя и отчество" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Дата рождения" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Счет-фактуры">
+    <Key>
+      <PropertyRef Name="Номер счет-фактуры" />
+    </Key>
+    <Property Name="Номер счет-фактуры" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код клиента" Type="int" Nullable="false" />
+    <Property Name="Код сотрудника" Type="int" Nullable="false" />
+    <Property Name="Код товара" Type="int" Nullable="false" />
+    <Property Name="Код типа топлива" Type="int" Nullable="false" />
+    <Property Name="Код производителя" Type="int" Nullable="false" />
+    <Property Name="Клиент" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Товар" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Количество" Type="int" Nullable="false" />
+    <Property Name="Дата" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Типы топлива">
+    <Key>
+      <PropertyRef Name="Код типа топлива" />
+    </Key>
+    <Property Name="Код типа топлива" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Товары">
+    <Key>
+      <PropertyRef Name="Код товара" />
+    </Key>
+    <Property Name="Код товара" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Код типа топлива" Type="int" Nullable="false" />
+    <Property Name="Код производителя" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Артикул" Type="int" Nullable="false" />
+    <Property Name="Тип" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Производитель" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Стоимость" Type="money" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Клиенты_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код производителя" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Клиенты_Типы топлива">
+    <End Role="Типы топлива" Type="Self.Типы топлива" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы топлива">
+        <PropertyRef Name="Код типа топлива" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код типа топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Клиенты_Товары">
+    <End Role="Товары" Type="Self.Товары" Multiplicity="1" />
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Товары">
+        <PropertyRef Name="Код товара" />
+      </Principal>
+      <Dependent Role="Клиенты">
+        <PropertyRef Name="Код товара" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет-фактуры_Клиенты">
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+    <End Role="Счет-фактуры" Type="Self.Счет-фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиенты">
+        <PropertyRef Name="Код клиента" />
+      </Principal>
+      <Dependent Role="Счет-фактуры">
+        <PropertyRef Name="Код клиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет-фактуры_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Счет-фактуры" Type="Self.Счет-фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код производителя" />
+      </Principal>
+      <Dependent Role="Счет-фактуры">
+        <PropertyRef Name="Код производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет-фактуры_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Счет-фактуры" Type="Self.Счет-фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Код сотрудника" />
+      </Principal>
+      <Dependent Role="Счет-фактуры">
+        <PropertyRef Name="Код сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет-фактуры_Типы топлива">
+    <End Role="Типы топлива" Type="Self.Типы топлива" Multiplicity="1" />
+    <End Role="Счет-фактуры" Type="Self.Счет-фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы топлива">
+        <PropertyRef Name="Код типа топлива" />
+      </Principal>
+      <Dependent Role="Счет-фактуры">
+        <PropertyRef Name="Код типа топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счет-фактуры_Товары">
+    <End Role="Товары" Type="Self.Товары" Multiplicity="1" />
+    <End Role="Счет-фактуры" Type="Self.Счет-фактуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Товары">
+        <PropertyRef Name="Код товара" />
+      </Principal>
+      <Dependent Role="Счет-фактуры">
+        <PropertyRef Name="Код товара" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_Производители">
+    <End Role="Производители" Type="Self.Производители" Multiplicity="1" />
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Производители">
+        <PropertyRef Name="Код производителя" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Код производителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_Типы топлива">
+    <End Role="Типы топлива" Type="Self.Типы топлива" Multiplicity="1" />
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Типы топлива">
+        <PropertyRef Name="Код типа топлива" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Код типа топлива" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище AptekaModelContainer">
+    <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Производители" EntityType="Self.Производители" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Счет-фактуры" EntityType="Self.Счет-фактуры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Типы топлива" EntityType="Self.Типы топлива" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Товары" EntityType="Self.Товары" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Клиенты_Производители" Association="Self.FK_Клиенты_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Клиенты_Типы топлива" Association="Self.FK_Клиенты_Типы топлива">
+      <End Role="Типы топлива" EntitySet="Типы топлива" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Клиенты_Товары" Association="Self.FK_Клиенты_Товары">
+      <End Role="Товары" EntitySet="Товары" />
+      <End Role="Клиенты" EntitySet="Клиенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет-фактуры_Клиенты" Association="Self.FK_Счет-фактуры_Клиенты">
+      <End Role="Клиенты" EntitySet="Клиенты" />
+      <End Role="Счет-фактуры" EntitySet="Счет-фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет-фактуры_Производители" Association="Self.FK_Счет-фактуры_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Счет-фактуры" EntitySet="Счет-фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет-фактуры_Сотрудники" Association="Self.FK_Счет-фактуры_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Счет-фактуры" EntitySet="Счет-фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет-фактуры_Типы топлива" Association="Self.FK_Счет-фактуры_Типы топлива">
+      <End Role="Типы топлива" EntitySet="Типы топлива" />
+      <End Role="Счет-фактуры" EntitySet="Счет-фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счет-фактуры_Товары" Association="Self.FK_Счет-фактуры_Товары">
+      <End Role="Товары" EntitySet="Товары" />
+      <End Role="Счет-фактуры" EntitySet="Счет-фактуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_Производители" Association="Self.FK_Товары_Производители">
+      <End Role="Производители" EntitySet="Производители" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_Типы топлива" Association="Self.FK_Товары_Типы топлива">
+      <End Role="Типы топлива" EntitySet="Типы топлива" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

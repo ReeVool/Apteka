@@ -1,0 +1,117 @@
+﻿<Window x:Class="Apteka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Apteka"
+        mc:Ignorable="d"
+        Title="Актека"
+        Height="600" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" Icon="/Media/medical.png"
+        >
+
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Grid Background="#e3f7ff" Grid.Row="0">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="/Media/madicament.png"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                       FontSize="24" Grid.Column="1" TextWrapping="Wrap">
+                ИС учета реализации медикаментов
+                </TextBlock>
+
+                <TextBlock FontSize="16" Foreground="Red"
+                       Grid.Column="2" TextWrapping="Wrap"
+                       HorizontalAlignment="Right" VerticalAlignment="Center">
+                Петров Иван Иванович
+                </TextBlock>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- БОКОВАЯ ПАНЕЛЬ -->
+            <Grid Grid.Column="0" Margin="10">
+                <StackPanel >
+
+                    <!-- КНОПКИ "РАЗВЕРНУТЬ" И "СВЕРНУТЬ" -->
+                    <WrapPanel Orientation="Horizontal">
+                        <Button Background="Transparent" BorderThickness="0" Foreground="Red"
+                            Margin="2" x:Name="ExpAll" Click="ExpAll_Click">Развернуть всё</Button>
+
+                        <Button Background="Transparent" BorderThickness="0" Foreground="Red"
+                            Margin="2" x:Name="UnexpAll" Click="UnexpAll_Click">Свернуть всё</Button>
+                    </WrapPanel>
+
+                    <!-- СПРАВОЧНИКИ -->
+                    <Expander Header="Справочники" x:Name="Sprav" IsExpanded="True">
+                        <ListBox>
+                            <ListBoxItem x:Name="SpravProis" Selected="SpravProis_Selected">Производители</ListBoxItem>
+                            <ListBoxItem x:Name="SpravGroups" Selected="SpravGroups_Selected">Группы товаров</ListBoxItem>
+                            <ListBoxItem x:Name="SpravAdd" Selected="SpravAdd_Selected">Добавление товаров</ListBoxItem>
+                            <ListBoxItem x:Name="SpravSpis" Selected="SpravSpis_Selected">Список товаров</ListBoxItem>
+                        </ListBox>
+                    </Expander>
+
+                    <!-- ПРОДАЖИ -->
+                    <Expander Header="Продажи" x:Name="Prods" IsExpanded="True">
+                        <ListBox>
+                            <ListBoxItem x:Name="ProdsYch" Selected="ProdsYch_Selected">Учет</ListBoxItem>
+                            <ListBoxItem x:Name="ProdsSchF" Selected="ProdsSchF_Selected">Счет-фактуры</ListBoxItem>
+                            <ListBoxItem x:Name="ProdsOtDate" Selected="ProdsOtDate_Selected">Отчет по датам</ListBoxItem>
+                            <ListBoxItem x:Name="ProdsOtType" Selected="ProdsOtType_Selected">Отчет по типам</ListBoxItem>
+                            <ListBoxItem x:Name="ProdsOtClient" Selected="ProdsOtClient_Selected">Отчет по клиентам</ListBoxItem>
+                        </ListBox>
+                    </Expander>
+
+                    <!-- КОНТРАГЕНТЫ -->
+                    <Expander Header="Контрагенты" x:Name="Contragents" IsExpanded="True">
+                        <ListBox>
+                            <ListBoxItem x:Name="ContrAdd" Selected="ContrAdd_Selected">Добавление</ListBoxItem>
+                            <ListBoxItem x:Name="ContrSpCon" Selected="ContrSpCon_Selected">Список и контакты</ListBoxItem>
+                            <ListBoxItem x:Name="ContrAddPerson" Selected="ContrAddPerson_Selected">Добавление персон</ListBoxItem>
+                            <ListBoxItem x:Name="ContrSpPerson" Selected="ContrSpPerson_Selected">Список персон</ListBoxItem>
+                        </ListBox>
+                    </Expander>
+
+                </StackPanel>
+
+                <!-- НА ГЛАВНУЮ -->
+                <Button Background="Transparent" BorderThickness="0" 
+                        Foreground="Red" Margin="2" x:Name="OnMain"
+                        Click="OnMain_Click"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                        Content="На главную"/>
+            </Grid>
+
+            <!-- ПОЛЕ ВЫВОДА ИНФОРМАЦИИ -->
+            <Grid Grid.Column="1">
+                <Frame x:Name="ContentFrame" Margin="0 0 10 0" NavigationUIVisibility="Hidden"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

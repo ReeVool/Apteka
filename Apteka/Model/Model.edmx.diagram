@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b6d902c6cae424493ba30c091277e9a" Name="Diagram1">
+        <EntityTypeShape EntityType="AptekaModel.Клиенты" Width="2" PointX="2.875" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Производители" Width="1.5" PointX="1.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Сотрудники" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Счет_фактуры" Width="2.125" PointX="8.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Товары" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

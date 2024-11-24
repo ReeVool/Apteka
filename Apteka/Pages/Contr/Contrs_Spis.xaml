@@ -1,0 +1,48 @@
+﻿<Page x:Class="Apteka.Pages.Contr.Contrs_Spis"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Apteka.Pages.Contr"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Contrs_Spis"
+      Loaded="Page_Loaded">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Label Content="Список контрагентов" Grid.Row="0" 
+               FontSize="30"
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="сотрудникиDataGrid" AutoGenerateColumns="False"
+                      EnableRowVirtualization="True" ItemsSource="{Binding}"
+                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                      Grid.Column="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="код_сотрудникаColumn" Binding="{Binding Код_сотрудника}" Header="Код" IsReadOnly="True" Width="3*"/>
+                    <DataGridTextColumn x:Name="фамилияColumn" Binding="{Binding Фамилия}" Header="Фамилия" Width="7*"/>
+                    <DataGridTextColumn x:Name="имя_и_отчествоColumn" Binding="{Binding Имя_и_отчество}" Header="Имя и отчество" Width="7*"/>
+                    <DataGridTextColumn x:Name="должностьColumn" Binding="{Binding Должность}" Header="Должность" Width="5*"/>
+                    <DataGridTextColumn x:Name="дата_регистрацииColumn" Binding="{Binding Дата_регистрации}" Header="Дата регистрации" Width="5*"/>
+                    <DataGridTextColumn x:Name="дата_рожденияColumn" Binding="{Binding Дата_рождения}" Header="Дата рождения" Width="5*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button x:Name="DeleteBtn" Grid.Column="1"
+                    HorizontalContentAlignment="Center"
+                    Content="Удалить" Click="DeleteBtn_Click"/>
+        </Grid>
+    </Grid>
+</Page>

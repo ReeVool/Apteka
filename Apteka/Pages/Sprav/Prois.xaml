@@ -1,0 +1,68 @@
+﻿<Page x:Class="Apteka.Prois"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Apteka"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Prois"
+      Loaded="Page_Loaded"
+      >
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="2*" MaxHeight="250"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Label Content="Производители" Grid.Row="0" 
+               FontSize="30"
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <!-- Середина -->
+        <Grid Grid.Row="1">
+            <Label Content="Наименование:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="наименованиеTextBox" HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" Text="{Binding Наименование, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="250"/>
+
+            <Label Content="Адрес:" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="адресTextBox" HorizontalAlignment="Left" Height="20" Margin="280,40,0,0" Text="{Binding Адрес, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="250"/>
+
+            <Label Content="Телефон:" Margin="10,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="телефонTextBox" Margin="10,110,0,0" HorizontalAlignment="Left" Height="20" Text="{Binding Телефон, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="250"/>
+
+            <Label Content="Email:" Margin="280,80,0,0" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top"/>
+            <TextBox x:Name="emailTextBox" Margin="280,110,0,0" HorizontalAlignment="Left" Height="20" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="250"/>
+
+            <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        </Grid>
+
+
+        <!-- Таблица -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="производителиDataGrid" AutoGenerateColumns="False" 
+                      EnableRowVirtualization="True" ItemsSource="{Binding}"
+                      RowDetailsVisibilityMode="VisibleWhenSelected" 
+                      Margin="0" Grid.Column="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="код_производителяColumn" Binding="{Binding Код_производителя}" Header="Код" IsReadOnly="True" Width="1*"/>
+                    <DataGridTextColumn x:Name="наименованиеColumn" Binding="{Binding Наименование}" Header="Наименование" Width="5*"/>
+                    <DataGridTextColumn x:Name="адресColumn" Binding="{Binding Адрес}" Header="Адрес" Width="5*"/>
+                    <DataGridTextColumn x:Name="телефонColumn" Binding="{Binding Телефон}" Header="Телефон" Width="3*"/>
+                    <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="3*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button x:Name="DeleteBtn" Grid.Column="1"
+                    HorizontalContentAlignment="Center"
+                    Content="Удалить" Click="DeleteBtn_Click"/>
+        </Grid>
+    </Grid>
+</Page>
